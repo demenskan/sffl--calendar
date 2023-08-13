@@ -1,0 +1,14 @@
+Generador de calendario de temporada de la Supernova Fantasy Football League
+
+Instrucciones Tecnicas
+    - Base de datos
+        1. Crear el archivo CSV con los resultados de la temporada anterior con el siguiente formato:
+                season_id,week,guest,home,guest_starters_score,home_starters_score,type,end_type,guest_bench_score,home_bench_score,win_type,home_advantage
+           * Recordar poner en la carpeta /var/lib/mysql-files para facilitar la importacion
+           * En la importacion desde google drive, es posible que los retornos de carro esten en formato DOS, por lo que se recomienda usar la herramienta dos2unix para convertir esos caracteres.
+           * Si da errores de que no se pueden tener los campos vacios, sustituirlos por \N
+        2. Crear las instancias de las divisiones correspondientes a la nueva temporada en la tabla 'divisions' y 'division_team'
+        3. Crear las rivalidades correspondientes a la temporada en la tabla 'extra_conference_rivals'
+        4. Actualizar el id de temporada en genera_tira_partidos.php
+        5. Ejecutar 'php genera_tira_partidos.php'
+        6. 

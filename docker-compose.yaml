@@ -1,0 +1,36 @@
+# version isn't needed as of 2020 for docker compose CLI. 
+# All 2.x and 3.x features supported
+# version: '2'
+
+services:
+
+  app:
+    build: .
+    #ports:
+    #  - 8080:80
+    environment:
+      SFFL_DB_HOST: sffl_mysql_1
+      SFFL_DB_NAME: sffl
+      SFFL_DB_USER: sffl
+      SFFL_DB_PASS: "QAd@23232dda/."
+      SFFL_PATH: /var/www/html/
+      SFFL_ENVIRONMENT: development
+    volumes:
+      - ./src:/var/www/html
+
+  mysql:
+    # we sue mariadb here for arm support
+    # mariadb is a fork of MySQL that's often faster and better multi-platform
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: examplerootPW
+      MYSQL_DATABASE: sffl
+      MYSQL_USER: sffl
+      MYSQL_PASSWORD: "QAd@23232dda/."
+    volumes:
+      - ./scripts_db:/docker-entrypoint-initdb.d
+      - ./csv:/var/lib/mysql-files
+      - sffl-data:/var/lib/mysql
+
+volumes:
+  sffl-data:

@@ -1,0 +1,12 @@
+asignar 
+
+
+vil@arr 4   tro@sky 4
+
+arr@tro 11 vil@sky 11
+
+
+47 -> SKY
+48 -> HAM
+44 -> GUE:
+

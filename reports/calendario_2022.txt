@@ -1,0 +1,21 @@
+season 2022...
+Symbology:  [+] Divisional; [-]Conference; [.] ExtraConference
+    1      	    2           3           4           5           6           7
+CHA @ GAN +	GM  @ CHA +	PIR @ GAN +	PIR @ GM  +	GM  @ PIR +	GAN @ GM  +	GOA @ PIR -	
+GOA @ BRO +	PAT @ BRO +	SAL @ GOA +	PAT @ GOA +	BRO @ GOA +	ARR @ VIL +	GM  @ SAL -	
+GUE @ ARR +	VLC @ HAM -	VIL @ ARR +	CHA @ SAL -	VLC @ GUE +	TIZ @ COL +	VIL @ SKY -	
+COL @ SKY +	GUE @ TIZ -	SKY @ TIZ +	TIZ @ VLC -	COL @ HAM +	SKY @ HAM +	HAM @ ARR -	
+PIR @ PAT -	PIR @ COL .	PAT @ GM  -	COL @ VIL -	GAN @ PAT -	SAL @ PIR -	GAN @ COL .	
+VIL @ HAM -	SKY @ GAN .	GUE @ COL -	SKY @ GUE -	TIZ @ VIL -	BRO @ CHA -	TIZ @ CHA .	
+TIZ @ GM  .	ARR @ GOA .	CHA @ HAM .	HAM @ GAN .	CHA @ SKY .	PAT @ GUE .	VLC @ PAT .	
+SAL @ VLC .	SAL @ VIL .	VLC @ BRO .	BRO @ ARR .	ARR @ SAL .	GOA @ VLC .	BRO @ GUE .	
+    8      	    9      	    10          11         12           13         14
+BRO @ SAL +	PAT @ SAL +	CHA @ PIR +	GAN @ CHA +	VLC @ VIL +	GM  @ GAN +	GAN @ PIR +	
+GUE @ VLC +	ARR @ VLC +	SAL @ PAT +	HAM @ TIZ +	HAM @ COL +	PIR @ CHA +	CHA @ GM  +	
+CHA @ GOA -	VIL @ GUE +	GOA @ GAN -	PIR @ BRO -	SAL @ GAN -	GOA @ PAT +	BRO @ PAT +	
+ARR @ COL -	TIZ @ SKY +	VLC @ SKY -	COL @ VLC -	PAT @ CHA -	SAL @ BRO +	GOA @ SAL +	
+SKY @ PIR .	GAN @ BRO -	ARR @ TIZ -	GM  @ SKY .	BRO @ GM  -	GUE @ VIL +	VIL @ VLC +	
+GAN @ TIZ .	GM  @ GOA -	HAM @ GUE -	PAT @ ARR .	SKY @ ARR -	VLC @ ARR +	ARR @ GUE +	
+GM  @ HAM .	HAM @ PIR .	COL @ GM  .	GOA @ VIL .	PIR @ TIZ .	SKY @ COL +	COL @ TIZ +	
+VIL @ PAT .	COL @ CHA .	VIL @ BRO .	GUE @ SAL .	GUE @ GOA .	TIZ @ HAM +	HAM @ SKY +	
+

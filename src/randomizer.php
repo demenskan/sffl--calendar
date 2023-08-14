@@ -3,32 +3,58 @@
     $iSeason="2023";
     $iWeekCount=14;
     $iMatchesPerWeek=8;
-    $iMatchesSwap=4;
-    $asReservedWeeks=array( 1, 13, 14);
-    $iTrys=10;
-
+    $iMinMatchesSwap=2;
+    $iMaxMatchesSwap=6;
+    $asReservedWeeks=array(13, 14);
+    $iTrys=(isset($argv[1])) ? $argv[1] : 100;
+    $iSuccess=0;
+    $iFails=0;
     //Resets the matches
     echo ("Reacomodando temporada ".$iSeason."...\n");
-    $i=1;
-    while ($i<=$iTrys) {
-        //selecciona una semana al azar 'A' que no este reservada
+/*
+    $asTeamsMatchesSelected=array(
+        "teams" => array ( 'GT', 'PIR', 'CHA', 'GAN'),
+        "matches" => array ("3", "5")
+    );
+    $asSwapTry=check_compatibility($asTeamsMatchesSelected, 3);
+    var_dump($asSwapTry);
+    );
+ */
+
+     for ($i=1;$i<=$iTrys;$i++) {
+            //selecciona una semana al azar 'A' que no este reservada
         $iWeekA=random_week($iWeekCount,$asReservedWeeks);
         $asReservedWeeks[]=$iWeekA;
+            //Selecciona una semana 'B' al azar que no este reservada
         $iWeekB=random_week($iWeekCount,$asReservedWeeks);
-        $asTeamsSelected=select_matches($iWeekA,$iMatchesSwap);
-        var_dump($asTeamsSelected);
-        echo ("A:".$iWeekA." B:".$iWeekB." \n");
-        //selecciona 4 partidos (8 equipos) al azar
-        //Selecciona una semana 'B' al azar que no este reservada
-        //si los 8 equipos juegan entre si en la semana 'B', hace el intercambio de partidos entre las semanas A y B, de lo contrario declara el intento como fallido
-        $i++;
-
-
+            //selecciona X partidos (2X equipos) al azar
+        $asTeamsMatchesWeekA=select_matches($iWeekA,$iMinMatchesSwap,$iMaxMatchesSwap);
+        //var_dump($asTeamsMatchesWeekA);
+        //echo ("A:".$iWeekA." B:".$iWeekB." \n");
+        //si todos los equipos juegan entre si en la semana 'B', hace el intercambio de partidos entre las semanas A y B, de lo contrario declara el intento como fallido
+        $asMatchesWeekB=check_compatibility($asTeamsMatchesWeekA, $iWeekB);
+         //echo ("*");
+        if ($asMatchesWeekB==false) {
+            echo ("*"); //Swap incompatible
+            $iFails++;
+            //echo ("(".$i.") Fallo de compatibilidad: semana ".$iWeekA." partidos ".implode($asTeamsMatchesWeekA['matches'],",")." incompatibles con la semana ".$iWeekB."\n");
+        }
+        else {
+            $iSuccess++;
+            $asSwitch=switch_matches($asTeamsMatchesWeekA['matches'],$iWeekA, $asMatchesWeekB,$iWeekB);
+            if ($asSwitch=="ok")
+                echo ("Intercambio de los partidos ".implode($asTeamsMatchesWeekA['matches'],",")." => ".$iWeekB." y partidos ".implode($asMatchesWeekB,",")." => ".$iWeekA."\n");
+            else
+                echo ("Hubo algun error");
+        }
+        //borra la semana reservada
+        $iPosWeekA= array_search($iWeekA,$asReservedWeeks);
+        unset($asReservedWeeks[$iPosWeekA]);
     }
+    echo ("Fin de programa. Exitos:".$iSuccess." Fallos:".$iFails." \n");
 
 
-
-
+    //-----------------------------------------------------------------------------------------------------------------------------
     function random_week($piWeekCount, $pasReservedWeeks) {
         do {
             $iWeek=rand(1,$piWeekCount);
@@ -36,82 +62,74 @@
         return $iWeek;
     }
 
-    function select_matches($piWeek, $piMatchesToSwap) {
-        $asSelectedMatches=tools_mysql_consulta("SELECT guest_team, home_team FROM temp_matches WHERE week=".$piWeek." ORDER BY RAND() LIMIT 0,".$piMatchesToSwap,"default");
+    function select_matches($piWeek, $piMinMatchesToSwap, $piMaxMatchesToSwap) {
+        $iMatchesToSwap=rand($piMinMatchesToSwap,$piMaxMatchesToSwap);
+        $asSelectedMatches=tools_mysql_consulta("SELECT id, guest_team, home_team FROM temp_matches WHERE week=".$piWeek." ORDER BY RAND() LIMIT 0,".$iMatchesToSwap,"default");
         $asTeamsSelected=array();
+        $asMatchesIds=array();
         if ($asSelectedMatches['ESTATUS']==1) {
             foreach ($asSelectedMatches['DATOS'] as $match) {
                 $asTeamsSelected[]=$match['guest_team'];
                 $asTeamsSelected[]=$match['home_team'];
+                $asMatchesIds[]=$match['id'];
             }
-            return ($asTeamsSelected);
+            return (array('teams' => $asTeamsSelected, 'matches' => $asMatchesIds));
         }
         else
             return ($asSelectedMatches);
     }
 
-
-/*       $iAssignedMatches=week_assign($i, $iMatchesPerWeek, $iSeason);
-        echo ("week ".$i." assigned (".$iAssignedMatches.") \n");
-        $asWeekMatches=tools_mysql_consulta("SELECT * FROM temp_matches WHERE week=".$i,"default");
-        foreach($asWeekMatches['DATOS'] as $asMatch)
-            echo ($asMatch['guest_team']." @ ".$asMatch['home_team']."\n");
-        $i++;
-    }
-
-    function week_assign($piWeek, $piMatchesPerWeek, $piSeason) {
-        //Gets the teams playing list
-        $asTeams=tools_mysql_consulta("SELECT team_id FROM division_team WHERE season_id=".$piSeason,"default");
-        $asTeamAvailable=[];
-        foreach($asTeams['DATOS'] as $sTeam)
-            $asTeamAvailable[$sTeam['team_id']]=true;
-        //Gets the matches without a week assigned
-        $asUndefinedMatches=tools_mysql_consulta("SELECT * FROM temp_matches WHERE week IS NULL","default");
-        echo ("Asignando a la semana ".$piWeek."...\n");
-        if ($asUndefinedMatches['ESTATUS']==1) {
-            echo ("Pendientes de asignar:".count($asUndefinedMatches['DATOS'])."...\n");
+    function check_compatibility ($pasTeamsMatchesSelected, $piNewWeek) {
+        $asMatchesToSwap=array();
+        $asTeamMarks=array();
+        //inicializa
+        //var_dump ($pasTeamsMatchesSelected['teams']);
+        foreach ($pasTeamsMatchesSelected['teams'] as $sTeam) {
+            $asTeamMarks[$sTeam]=false;
         }
-        else
-            echo ("Pendientes de asignar: 0\n");
-        $iMatchesCount=0;
-        //Check for already assigned matches
-        $asAssigned=tools_mysql_consulta("SELECT * FROM temp_matches WHERE week=".$piWeek,"default");
-        // In case of existence, flag them as unavailable
-        if ($asAssigned['ESTATUS']==1) {
-            foreach($asAssigned['DATOS'] as $asMatch) {
-                $asTeamAvailable[$asMatch['guest_team']]=false;
-                $asTeamAvailable[$asMatch['home_team']]=false;
-                $iMatchesCount++;
-            }
-        }
-        //Assign the rest of them
-        for ($j=$iMatchesCount;$j<$piMatchesPerWeek;$j++) {
-            $iOffset=0;
-            foreach($asUndefinedMatches['DATOS'] as $key => $asMatch) {
-                if (($asTeamAvailable[$asMatch['guest_team']])&&($asTeamAvailable[$asMatch['home_team']])) {
-                    $asMatchAssign=tools_mysql_ejecuta("UPDATE temp_matches SET week=".$piWeek." WHERE id=".$asMatch['id'],"default");
-                    //echo ("Asignando a la semana ".$piWeek." el partido ".$asMatch['guest_team']." @ ".$asMatch['home_team']."... (Offset $iOffset)\n");
-                    $iMatchesCount++;
-                    $asTeamAvailable[$asMatch['home_team']]=false;
-                    $asTeamAvailable[$asMatch['guest_team']]=false;
-                    array_splice($asUndefinedMatches['DATOS'], $iOffset, 1);
-                    break;
+
+        foreach ($pasTeamsMatchesSelected['teams'] as $sTeam) {
+            //echo ("<EQUIPO>: ".print_r($sTeam, true)."\n");
+            if ($asTeamMarks[$sTeam]==false) {
+                $sQy="Select id, guest_team, home_team FROM temp_matches WHERE (guest_team='".$sTeam."' OR home_team='".$sTeam."') AND week=".$piNewWeek;
+                //echo ("query: ".$sQy."\n");
+                $rRec=tools_mysql_consulta($sQy,"default", false);
+                //var_dump ($rRec);
+                //echo ("sTeam->name: ".$sTeam."\n");
+                if ($rRec['ESTATUS']==1) {
+                    if ($rRec['DATOS']['guest_team']==$sTeam)
+                        $sRivalTeam=$rRec['DATOS']['home_team'];
+                    else
+                        $sRivalTeam=$rRec['DATOS']['guest_team'];
+                    //echo ("RivalTeam: ".$sRivalTeam."\n");
+                    //var_dump ($pasTeamsMatchesSelected['teams']);
+                    if (in_array($sRivalTeam, $pasTeamsMatchesSelected['teams'])) {
+                        $asTeamsMarks[$sTeam]=true;
+                        $asTeamsMarks[$sRivalTeam]=true;
+                        if (!in_array($rRec['DATOS']['id'],$asMatchesToSwap))
+                            $asMatchesToSwap[]=$rRec['DATOS']['id'];
+                    }
+                    else
+                        return (false); //failed try
                 }
-                $iOffset++;
             }
         }
-        return $iMatchesCount;
+        return ($asMatchesToSwap);
     }
 
-
-
-
-    function AssignMatch($piWeek, $psGuest, $psHome) {
-        $asAssign=tools_mysql_ejecuta("UPDATE temp_matches SET week=$piWeek WHERE home_team='$psHome' AND guest_team='$psGuest' ","default");
-        echo ("Asignando $psGuest @ $psHome a la semana $piWeek\n");
+    function switch_matches ($pasMatchesWeekA, $piWeekA, $pasMatchesWeekB, $piWeekB) {
+        $sQyA="UPDATE temp_matches SET week=".$piWeekB." WHERE id IN (".implode($pasMatchesWeekA,",").")";
+        $asRecA=tools_mysql_ejecuta($sQyA,"default");
+        if ($asRecA['ESTATUS']!=1)
+            return ($asRecA['MENSAJE']);
+        $sQyB="UPDATE temp_matches SET week=".$piWeekA." WHERE id IN (".implode($pasMatchesWeekB,",").")";
+        $asRecB=tools_mysql_ejecuta($sQyB,"default");
+        if ($asRecB['ESTATUS']!=1)
+            return ($asRecB['MENSAJE']);
+        //si llega aqui es que tod o estuvo bien
+        return ("ok");
+        //echo ($sQyA."\n");
+        //echo ($sQyB."\n");
     }
-
- */
-
 
 ?>

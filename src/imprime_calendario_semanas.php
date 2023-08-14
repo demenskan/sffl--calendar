@@ -1,16 +1,21 @@
 <?php
     require_once ('tools_mysql.php');
     $iSeason=$argv[1];
+    $sMode=(isset($argv[2])) ? $argv[2] : "scope";
     $iTotalWeeks=14;
     echo ("season ".$iSeason."...\n");
-    echo ("Symbology:  [+] Divisional; [-]Conference; [.] ExtraConference\n");
+    if ($sMode=="scope")
+        echo ("Symbology:  [+] Divisional; [-]Conference; [.] ExtraConference\n");
     $asCalendar=[];
     for($i=1;$i<=$iTotalWeeks;$i++) {
         $asPartidos=tools_mysql_consulta("SELECT * FROM temp_matches WHERE season_id=".$iSeason." AND week=".$i." ORDER BY week",'default');
         foreach ($asPartidos['DATOS'] as $key => $asPartido) {
             $asCalendar[$key][$i]['guest']=$asPartido['guest_team'];
             $asCalendar[$key][$i]['home']=$asPartido['home_team'];
-            $asCalendar[$key][$i]['scope']=$asPartido['scope'];
+            if ($sMode=="scope")
+                $asCalendar[$key][$i]['scope']=$asPartido['scope'];
+            else
+                $asCalendar[$key][$i]['scope']=$asPartido['id'];
         }
     }
   //      var_dump($asCalendar);
@@ -22,11 +27,15 @@
         for ($iLinea=0;$iLinea<8;$iLinea++) {
             for ($iWeek=1;$iWeek<=7;$iWeek++) {
                 if (isset($asCalendar[$iLinea][$iVuelta*7+$iWeek])) {
-                    switch ($asCalendar[$iLinea][$iVuelta*7+$iWeek]['scope']) {
-                    case 'D' : $sType='+'; break;
-                    case 'C' : $sType='-'; break;
-                    case 'L' : $sType='.'; break;
+                    if ($sMode=="scope") {
+                        switch ($asCalendar[$iLinea][$iVuelta*7+$iWeek]['scope']) {
+                            case 'D' : $sType='+'; break;
+                            case 'C' : $sType='-'; break;
+                            case 'L' : $sType='.'; break;
+                        }
                     }
+                    else
+                        $sType=$asCalendar[$iLinea][$iVuelta*7+$iWeek]['scope'];
                     $sEspacioGuest=(strlen($asCalendar[$iLinea][$iVuelta*7+$iWeek]['guest'])<3) ? " " : "";
                     $sEspacioHome=(strlen($asCalendar[$iLinea][$iVuelta*7+$iWeek]['home'])<3) ? " " : "";
                     echo ($asCalendar[$iLinea][$iVuelta*7+$iWeek]['guest'].$sEspacioGuest

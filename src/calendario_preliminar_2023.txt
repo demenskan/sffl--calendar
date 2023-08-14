@@ -1,0 +1,56 @@
+Season 2023...
+Symbology:  [+] Divisional; [-]Conference; [.] ExtraConference
+    1           2           3           4           5           6           7
+ARR @ VOL + GOA @ BRO + GT  @ PIR + GAN @ GT  + BRO @ GOA + BRO @ SAL + GAN @ CHA +
+COL @ SKY + TIZ @ SKY + CHA @ GAN + GOA @ PAT + HAM @ COL + SKY @ TIZ + PIR @ GT  +
+BRO @ PIR - SAL @ CHA - VIL @ ARR + PIR @ SAL - PAT @ PIR - PAT @ GAN - SAL @ GOA +
+CHA @ PAT - ARR @ HAM - VOL @ GUE + VIL @ TIZ - GAN @ SAL - GOA @ GT  - PAT @ BRO +
+SAL @ GT  - GUE @ PIR . PAT @ HAM . COL @ ARR - SKY @ VIL - HAM @ VOL - ARR @ VIL +
+TIZ @ GUE - GAN @ VOL . GOA @ TIZ . GUE @ HAM - TIZ @ ARR - COL @ GUE - COL @ HAM +
+GAN @ VIL . VIL @ GT  . COL @ BRO . VOL @ CHA . CHA @ GUE . PIR @ VIL . VOL @ TIZ -
+HAM @ GOA . COL @ PAT . SKY @ SAL . BRO @ SKY . VOL @ GT  . CHA @ ARR . GUE @ SKY -
+    8           9           10          11          12         13           14
+GT  @ CHA + PIR @ GAN + CHA @ PIR + PIR @ VOL . GUE @ VOL + GAN @ PIR + GT  @ GAN +
+SAL @ PAT + PAT @ SAL + VOL @ VIL + ARR @ GAN . SKY @ HAM + CHA @ GT  + PIR @ CHA +
+PIR @ GOA - VIL @ GUE + GUE @ ARR + VIL @ CHA . BRO @ GAN - BRO @ PAT + PAT @ GOA +
+VOL @ COL - HAM @ TIZ + TIZ @ COL + GT  @ GUE . GOA @ CHA - GOA @ SAL + SAL @ BRO +
+HAM @ VIL - CHA @ BRO - GAN @ GOA - TIZ @ PAT . GT  @ PAT - VIL @ VOL + GUE @ VIL +
+ARR @ SKY - SKY @ VOL - GT  @ BRO - SKY @ GOA . VIL @ COL - ARR @ GUE + VOL @ ARR +
+GUE @ GAN . GT  @ ARR . PAT @ SKY . BRO @ HAM . ARR @ PIR . COL @ TIZ + SKY @ COL +
+TIZ @ BRO . GOA @ COL . HAM @ SAL . SAL @ COL . SAL @ TIZ . HAM @ SKY + TIZ @ HAM +
+
+
+season 2023...
+Symbology:  [+] Divisional; [-]Conference; [.] ExtraConference
+      PIR             GAN             CHA             GT              PAT             GOA             BRO             SAL
+ (01)   BRO -    (01) @ VIL .    (01) @ PAT -    (01)   SAL -    (01)   CHA -    (01)   HAM .    (01) @ PIR -    (01) @ GT  -
+ (02)   GUE .    (02) @ VOL .    (02)   SAL -    (02)   VIL .    (02)   COL .    (02) @ BRO +    (02)   GOA +    (02) @ CHA -
+ (03)   GT  +    (03)   CHA +    (03) @ GAN +    (03) @ PIR +    (03) @ HAM .    (03) @ TIZ .    (03)   COL .    (03)   SKY .
+ (04) @ SAL -    (04) @ GT  +    (04)   VOL .    (04)   GAN +    (04)   GOA +    (04) @ PAT +    (04) @ SKY .    (04)   PIR -
+ (05)   PAT -    (05) @ SAL -    (05) @ GUE .    (05)   VOL .    (05) @ PIR -    (05)   BRO +    (05) @ GOA +    (05)   GAN -
+ (06) @ VIL .    (06)   PAT -    (06) @ ARR .    (06)   GOA -    (06) @ GAN -    (06) @ GT  -    (06) @ SAL +    (06)   BRO +
+ (07) @ GT  +    (07) @ CHA +    (07)   GAN +    (07)   PIR +    (07) @ BRO +    (07)   SAL +    (07)   PAT +    (07) @ GOA +
+ (08) @ GOA -    (08)   GUE .    (08)   GT  +    (08) @ CHA +    (08)   SAL +    (08)   PIR -    (08)   TIZ .    (08) @ PAT +
+ (09) @ GAN +    (09)   PIR +    (09) @ BRO -    (09) @ ARR .    (09) @ SAL +    (09) @ COL .    (09)   CHA -    (09)   PAT +
+ (10)   CHA +    (10) @ GOA -    (10) @ PIR +    (10) @ BRO -    (10) @ SKY .    (10)   GAN -    (10)   GT  -    (10)   HAM .
+ (11) @ VOL .    (11)   ARR .    (11)   VIL .    (11) @ GUE .    (11)   TIZ .    (11)   SKY .    (11) @ HAM .    (11) @ COL .
+ (12)   ARR .    (12)   BRO -    (12)   GOA -    (12) @ PAT -    (12)   GT  -    (12) @ CHA -    (12) @ GAN -    (12) @ TIZ .
+ (13)   GAN +    (13) @ PIR +    (13) @ GT  +    (13)   CHA +    (13)   BRO +    (13) @ SAL +    (13) @ PAT +    (13)   GOA +
+ (14) @ CHA +    (14)   GT  +    (14)   PIR +    (14) @ GAN +    (14) @ GOA +    (14)   PAT +    (14)   SAL +    (14) @ BRO +
+
+      VOL             VIL             ARR             GUE             COL             TIZ             SKY             HAM
+ (01)   ARR +    (01)   GAN .    (01) @ VOL +    (01)   TIZ -    (01) @ SKY +    (01) @ GUE -    (01)   COL +    (01) @ GOA .
+ (02)   GAN .    (02) @ GT  .    (02) @ HAM -    (02) @ PIR .    (02) @ PAT .    (02) @ SKY +    (02)   TIZ +    (02)   ARR -
+ (03) @ GUE +    (03) @ ARR +    (03)   VIL +    (03)   VOL +    (03) @ BRO .    (03)   GOA .    (03) @ SAL .    (03)   PAT .
+ (04) @ CHA .    (04) @ TIZ -    (04)   COL -    (04) @ HAM -    (04) @ ARR -    (04)   VIL -    (04)   BRO .    (04)   GUE -
+ (05) @ GT  .    (05)   SKY -    (05)   TIZ -    (05)   CHA .    (05)   HAM +    (05) @ ARR -    (05) @ VIL -    (05) @ COL +
+ (06)   HAM -    (06)   PIR .    (06)   CHA .    (06)   COL -    (06) @ GUE -    (06)   SKY +    (06) @ TIZ +    (06) @ VOL -
+ (07) @ TIZ -    (07)   ARR +    (07) @ VIL +    (07) @ SKY -    (07) @ HAM +    (07)   VOL -    (07)   GUE -    (07)   COL +
+ (08) @ COL -    (08)   HAM -    (08) @ SKY -    (08) @ GAN .    (08)   VOL -    (08) @ BRO .    (08)   ARR -    (08) @ VIL -
+ (09)   SKY -    (09) @ GUE +    (09)   GT  .    (09)   VIL +    (09)   GOA .    (09)   HAM +    (09) @ VOL -    (09) @ TIZ +
+ (10) @ VIL +    (10)   VOL +    (10)   GUE +    (10) @ ARR +    (10)   TIZ +    (10) @ COL +    (10)   PAT .    (10) @ SAL .
+ (11)   PIR .    (11) @ CHA .    (11) @ GAN .    (11)   GT  .    (11)   SAL .    (11) @ PAT .    (11) @ GOA .    (11)   BRO .
+ (12)   GUE +    (12) @ COL -    (12) @ PIR .    (12) @ VOL +    (12)   VIL -    (12)   SAL .    (12) @ HAM +    (12)   SKY +
+ (13)   VIL +    (13) @ VOL +    (13) @ GUE +    (13)   ARR +    (13) @ TIZ +    (13)   COL +    (13)   HAM +    (13) @ SKY +
+ (14) @ ARR +    (14)   GUE +    (14)   VOL +    (14) @ VIL +    (14)   SKY +    (14) @ HAM +    (14) @ COL +    (14)   TIZ +
+

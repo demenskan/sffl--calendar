@@ -23,8 +23,11 @@ INSTRUCTIONS
 * create new entries in divisions, according to the new season
 * make sure table division_team is updated to the current season, and the teams are according to the division id for the current season
 * add the corresponding columns at extra_conference_rivals
-* run php genera_tira_partidos.php
-* make sure every team has the same number of home matches
-* open php acomoda_partidos_v2.php
+* run php genera_tira_partidos_aburrido.php for dull generation
     - set new season
     - set the fixed matches to be
+* make sure every team has the same number of home matches
+* run  php randomize.php [number_of_tries] as many times as you want. It takes a random group of matches from a random week and tries to swap it with another week.
+  NOTES:
+    - The bigger the group of matches, the better chances of succesful swap
+    - With settings for groups between 2 ~ 6 matches, the success ratio is about 0.1% of tries.

@@ -9,12 +9,12 @@ services:
     #ports:
     #  - 8080:80
     environment:
-      SFFL_DB_HOST: sffl_mysql_1
-      SFFL_DB_NAME: sffl
-      SFFL_DB_USER: sffl
-      SFFL_DB_PASS: "QAd@23232dda/."
-      SFFL_PATH: /var/www/html/
-      SFFL_ENVIRONMENT: development
+      SFFL_DB_HOST: ${DB_HOST}
+      SFFL_DB_NAME: ${DB_NAME}
+      SFFL_DB_USER: ${DB_USER}
+      SFFL_DB_PASS: ${DB_PASS}
+      SFFL_PATH: ${SFFL_PATH}
+      SFFL_ENVIRONMENT: ${ENVIRONMENT}
     volumes:
       - ./src:/var/www/html
 
@@ -23,10 +23,10 @@ services:
     # mariadb is a fork of MySQL that's often faster and better multi-platform
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: examplerootPW
-      MYSQL_DATABASE: sffl
-      MYSQL_USER: sffl
-      MYSQL_PASSWORD: "QAd@23232dda/."
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     volumes:
       - ./scripts_db:/docker-entrypoint-initdb.d
       - ./csv:/var/lib/mysql-files

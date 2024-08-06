@@ -1,6 +1,6 @@
 <?php
     require_once ('tools_mysql.php');
-    $iSeason="2023";
+    $iSeason="2024";
     echo ("Generating matches for the season ".$iSeason."...\n");
     $asPartidos=GeneraDivisionales($iSeason);  //Misma division
     $asPartidos=array_merge($asPartidos,GeneraConferenciales($iSeason)); //Misma conferencia, distinta division

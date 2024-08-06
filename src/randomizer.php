@@ -1,11 +1,11 @@
 <?php
     require_once ('tools_mysql.php');
-    $iSeason="2023";
+    $iSeason="2024";
     $iWeekCount=14;
     $iMatchesPerWeek=8;
     $iMinMatchesSwap=2;
     $iMaxMatchesSwap=6;
-    $asReservedWeeks=array(13, 14);
+    $asReservedWeeks=array(14);
     $iTrys=(isset($argv[1])) ? $argv[1] : 100;
     $iSuccess=0;
     $iFails=0;

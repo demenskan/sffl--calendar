@@ -18,10 +18,20 @@ INSTRUCTIONS
      NOTE: Remember to put it in the folder /var/lib/mysql-files to ease import
      NOTE2: If you are importing from a google drive file, it may have the carry return characters on DOS format, so it's recomended to use the dos2unix tool to convert to unix CRLF.
      NOTE3: In case of errors on empty fields, substitute them with \N (uppercase)
+```
+LOAD DATA INFILE '/var/lib/mysql-files/<file>.csv'
+INTO TABLE matches
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+```
 * make sure temp_matches is empty (optional) [delete from temp_matches]
 * make sure franchises is correctly filled
 * create new entries in divisions, according to the new season
-     [INSERT INTO divisions (id, division_name, conference_id, season_id) (select replace(id, '3','4'), division_name, conference_id, 2024 from divisions where season_id=2023);]
+```
+     INSERT INTO divisions (id, division_name, conference_id, season_id) (select replace(id, '3','4'), division_name, conference_id, 2024 from divisions where season_id=2023);
+```
 * make sure table division_team is updated to the current season, and the teams are according to the division id for the current season
      [INSERT INTO division_team (team_id, division_id, season_id) (select team_id, replace(division_id, '3','4'), '2024' from division_team where season_id=2023)]
 * add the corresponding columns at extra_conference_rivals

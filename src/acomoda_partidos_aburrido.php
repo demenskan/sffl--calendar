@@ -7,8 +7,16 @@
     $asMatchReset=tools_mysql_ejecuta("UPDATE temp_matches SET week=NULL ","default");
 /*    AssignMatch(1,'GUE','TRO');
 AssignMatch(1,'PIR','GAN');*/
-    AssignMatch(14,'GOA','PAT');
+    AssignMatch(13,'SAL','GOA');
+    AssignMatch(13,'PAT','BRO');
+    AssignMatch(13,'TRO', 'ARR');
+    AssignMatch(13,'GUE', 'VIL');
+    AssignMatch(13,'SKY','COL');
+    AssignMatch(13,'TIZ','HAM');
+    AssignMatch(13,'PIR','CHA');
+    AssignMatch(13,'GT','GAN');
     AssignMatch(14,'BRO','SAL');
+    AssignMatch(14,'GOA','PAT');
     AssignMatch(14,'VIL','TRO');
     AssignMatch(14,'ARR','GUE');
     AssignMatch(14,'HAM','SKY');

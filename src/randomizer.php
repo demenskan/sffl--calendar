@@ -5,7 +5,7 @@
     $iMatchesPerWeek=8;
     $iMinMatchesSwap=2;
     $iMaxMatchesSwap=6;
-    $asReservedWeeks=array(14);
+    $asReservedWeeks=array(13, 14);
     $iTrys=(isset($argv[1])) ? $argv[1] : 100;
     $iSuccess=0;
     $iFails=0;

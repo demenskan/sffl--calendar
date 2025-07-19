@@ -15,9 +15,13 @@ INSTRUCTIONS
 * have the table of matches the season before previously filled
    - Create the CSV file with the results from last season having the next format:
      [season_id,week,guest,home,guest_starters_score,home_starters_score,type,end_type,guest_bench_score,home_bench_score,win_type,home_advantage]
+     TIP: to delete the records from the team's names, you can do a substitution looking for \(\d+-\d+-\d\) pattern with regex option selected
      NOTE: Remember to put it in the folder /var/lib/mysql-files to ease import
      NOTE2: If you are importing from a google drive file, it may have the carry return characters on DOS format, so it's recomended to use the dos2unix tool to convert to unix CRLF.
-     NOTE3: In case of errors on empty fields, substitute them with \N (uppercase)
+     NOTE3: In case of errors on empty fields, substitute them with \N (double backslash on vim, and uppercase)
+     command:
+      LOAD DATA INFILE '/var/lib/mysql-files/<filename>' INTO TABLE matches  FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
 * make sure temp_matches is empty (optional) [delete from temp_matches]
 * make sure franchises is correctly filled
 * create new entries in divisions, according to the new season

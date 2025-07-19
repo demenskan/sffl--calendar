@@ -1,12 +1,12 @@
 <?php
     require_once ('tools_mysql.php');
-    $iSeason="2024";
+    $iSeason=$argv[1];
     $iWeekCount=14;
     $iMatchesPerWeek=8;
     $iMinMatchesSwap=2;
-    $iMaxMatchesSwap=6;
+    $iMaxMatchesSwap=5;
     $asReservedWeeks=array(13, 14);
-    $iTrys=(isset($argv[1])) ? $argv[1] : 100;
+    $iTrys=(isset($argv[2])) ? $argv[2] : 100;
     $iSuccess=0;
     $iFails=0;
     //Resets the matches

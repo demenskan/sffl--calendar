@@ -29,24 +29,18 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
-* make sure temp_matches is empty (optional) [delete from temp_matches]
 * make sure franchises is correctly filled
-* create new entries in divisions, according to the new season
-```
-     INSERT INTO divisions (id, division_name, conference_id, season_id) (select replace(id, '3','4'), division_name, conference_id, 2024 from divisions where season_id=2023);
-```
-* make sure table division_team is updated to the current season, and the teams are according to the division id for the current season
-     [INSERT INTO division_team (team_id, division_id, season_id) (select team_id, replace(division_id, '3','4'), '2024' from division_team where season_id=2023)]
-* add the corresponding columns at extra_conference_rivals
-     [INSERT INTO extra_conference_rivals (season_id, ac_division, uc_division) (select 2024, replace(ac_division,'2022','2024'), replace(uc_division,'2022','2024') from extra_conference_rivals where season_id=2022);]
-* run php genera_tira_partidos.php to fill up temp_matches
-    - set new season
-* run php acomoda_partidos_aburrido for dull generation
-    - set the fixed matches to be
+* copy the content of *scripts_db/season_init.store.procedure* and paste it into the console (in case of DB reset)
+* Run into mysql console: ``` CALL season_init(<season_number>); ```
+* get inside the container
+* run ``` php genera_tira_partidos.php <new_season> ``` to fill up temp_matches
+* run ``` php acomoda_partidos_aburrido <new_season> ``` for dull generation
 * make sure every team has the same number of home matches
     - php imprime_calendario_semanas 2024
     - php imprime_calendario_equipos 2024
-* run  php randomize.php [number_of_tries] as many times as you want. It takes a random group of matches from a random week and tries to swap it with another week.
-  NOTES:
+* run  ``` php randomize.php <season> [number_of_tries] ``` as many times as you want. 
+    It takes a random group of matches from a random week and tries to swap it with another week.
+    NOTES:
     - The bigger the group of matches, the better chances of succesful swap
     - With settings for groups between 2 ~ 6 matches, the success ratio is about 0.1% of tries.
+    - The number of tries parameter is optional (default=100)

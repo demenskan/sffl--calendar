@@ -1,28 +1,28 @@
 <?php
     require_once ('tools_mysql.php');
-    $iSeason="2024";
+    $iSeason=$argv[1];
     $iWeekCount=14;
     $iMatchesPerWeek=8;
     //Resets the matches
     $asMatchReset=tools_mysql_ejecuta("UPDATE temp_matches SET week=NULL ","default");
 /*    AssignMatch(1,'GUE','TRO');
 AssignMatch(1,'PIR','GAN');*/
-    AssignMatch(13,'SAL','GOA');
-    AssignMatch(13,'PAT','BRO');
-    AssignMatch(13,'TRO', 'ARR');
-    AssignMatch(13,'GUE', 'VIL');
-    AssignMatch(13,'SKY','COL');
-    AssignMatch(13,'TIZ','HAM');
-    AssignMatch(13,'PIR','CHA');
-    AssignMatch(13,'GT','GAN');
-    AssignMatch(14,'BRO','SAL');
-    AssignMatch(14,'GOA','PAT');
-    AssignMatch(14,'VIL','TRO');
-    AssignMatch(14,'ARR','GUE');
-    AssignMatch(14,'HAM','SKY');
-    AssignMatch(14,'COL','TIZ');
-    AssignMatch(14,'GAN','PIR');
-    AssignMatch(14,'CHA','GT');
+    AssignMatch(13,'GOA','PAT');
+    AssignMatch(13,'BRO','SAL');
+    AssignMatch(13,'VIL', 'TRO');
+    AssignMatch(13,'ARR', 'GUE');
+    AssignMatch(13,'HAM','SKY');
+    AssignMatch(13,'COL','TIZ');
+    AssignMatch(13,'GAN','PIR');
+    AssignMatch(13,'CHA','GT');
+    AssignMatch(14,'PAT','BRO');
+    AssignMatch(14,'SAL','GOA');
+    AssignMatch(14,'GUE','VIL');
+    AssignMatch(14,'TRO','ARR');
+    AssignMatch(14,'TIZ','HAM');
+    AssignMatch(14,'SKY','COL');
+    AssignMatch(14,'GT','GAN');
+    AssignMatch(14,'PIR','CHA');
     echo ("Acomodando partidos para la temporada ".$iSeason."...\n");
     $i=1;
     while ($i<=$iWeekCount) {

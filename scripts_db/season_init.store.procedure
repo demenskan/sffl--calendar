@@ -1,0 +1,45 @@
+DELIMITER $$
+
+CREATE PROCEDURE season_init(IN new_season INT)
+BEGIN
+    DECLARE previous_season INT;
+    DECLARE previous_interconference_season INT;
+    SET previous_season = new_season - 1;
+    SET previous_interconference_season = new_season - 2;
+
+    -- create new entries in divisions, according to the new season
+    INSERT INTO divisions (id, division_name, conference_id, season_id)
+    SELECT
+        REPLACE(id, previous_season, new_season),
+        division_name,
+        conference_id,
+        new_season
+    FROM divisions
+    WHERE season_id = previous_season;
+
+
+    -- make sure table division_team is updated to the current season, and the teams are according
+    -- to the division id for the current season
+    INSERT INTO division_team (team_id, division_id, season_id)
+    SELECT
+        team_id,
+        REPLACE(division_id, previous_season, new_season),
+        new_season
+    FROM division_team
+    WHERE season_id = previous_season;
+
+
+    -- make sure temp_matches is empty (optional)
+    DELETE FROM temp_matches;
+
+    -- add the corresponding columns at extra_conference_rivals
+    INSERT INTO extra_conference_rivals (season_id, ac_division, uc_division)
+    SELECT
+        new_season,
+        REPLACE(ac_division,previous_interconference_season,new_season),
+        REPLACE(uc_division,previous_interconference_season,new_season)
+    FROM extra_conference_rivals
+    WHERE season_id = previous_interconference_season;
+END$$
+
+DELIMITER ;

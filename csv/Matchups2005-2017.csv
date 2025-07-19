@@ -1,3 +1,4 @@
+season_id,week,guest,home,guest_starters_score,home_starters_score,type,end_type,guest_bench_score,home_bench_score,final_winner,home_advantage
 2005,1,PIR,GT,95,44,SEASON,REGULAR,\N,\N,GUEST,Y
 2005,1,TIZ,GAN,86,68,SEASON,REGULAR,\N,\N,GUEST,Y
 2005,1,SAL,GUE,65,43,SEASON,REGULAR,\N,\N,GUEST,Y

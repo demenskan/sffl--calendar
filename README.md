@@ -38,7 +38,7 @@ IGNORE 1 ROWS;
 * make sure every team has the same number of home matches
     - php imprime_calendario_semanas 2024
     - php imprime_calendario_equipos 2024
-* run  ``` php randomize.php <season> [number_of_tries] ``` as many times as you want. 
+* run  ``` php randomizer.php <season> [number_of_tries] ``` as many times as you want. 
     It takes a random group of matches from a random week and tries to swap it with another week.
     NOTES:
     - The bigger the group of matches, the better chances of succesful swap
